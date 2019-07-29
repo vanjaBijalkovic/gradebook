@@ -16,3 +16,5 @@ use Illuminate\Http\Request;
 Route::post('/login','Auth\LoginController@authenticate');
 
 Route::post('/register', 'Auth\RegisterController@register');
+
+Route::middleware('jwt')->resource('diaries', 'DiariesController');
