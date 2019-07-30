@@ -17,4 +17,6 @@ Route::post('/login','Auth\LoginController@authenticate');
 
 Route::post('/register', 'Auth\RegisterController@register');
 
-Route::middleware('api')->resource('diaries', 'DiaryController');
+Route::middleware('jwt')->resource('diaries', 'DiaryController');
+
+Route::middleware('jwt')->resource('professors','ProfessorController');

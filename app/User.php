@@ -4,6 +4,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Professor;
+use App\Diary;
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
@@ -39,4 +41,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+    public function professor() 
+    {
+        return $this->hasOne(Professor::class);
+    }
+    
 }
