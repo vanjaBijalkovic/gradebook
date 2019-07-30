@@ -13,7 +13,7 @@ class Professor extends Model
         'url', 'user_id'
     ];
 
-    public function diaries()
+    public function diary()
     {
         return $this->hasMany(Diary::class);
     }

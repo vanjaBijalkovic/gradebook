@@ -10,7 +10,7 @@ class Diary extends Model
 {
     protected $fillable = [
 	
-        'title','professor_id'
+        'title','professor_id',
     ];
     public function professor()
     {
