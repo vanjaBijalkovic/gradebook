@@ -10,7 +10,7 @@ class ProfessorController extends Controller
 {
     public function index(Request $request)
     {
-        return Professor::with('user', 'diary')->get();
+        return Professor::with('user.professor','diary')->get();
         
     }
 }

@@ -15,7 +15,7 @@ class Professor extends Model
 
     public function diary()
     {
-        return $this->hasMany(Diary::class);
+        return $this->hasOne(Diary::class);
     }
     public function user()
     {

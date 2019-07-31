@@ -14,10 +14,15 @@ class Diary extends Model
     ];
     public function professor()
     {
-    	return $this->belongsTo(Professor::class, 'professor_id');
+    	return $this->belongsTo(Professor::class);
     }
     public function user()
     {
-    	return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
+
 }
