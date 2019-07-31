@@ -24,5 +24,8 @@ class Diary extends Model
     {
         return $this->hasMany(Student::class);
     }
-
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
