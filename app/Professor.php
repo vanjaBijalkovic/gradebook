@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Diary;
 use App\User;
+use App\Image;
 
 
 class Professor extends Model 
@@ -20,5 +21,9 @@ class Professor extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function professorHasManyImages()
+    {
+        return $this->hasMany(Image::class);
     }
 }
