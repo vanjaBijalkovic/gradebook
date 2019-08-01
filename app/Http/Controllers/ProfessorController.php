@@ -13,6 +13,10 @@ class ProfessorController extends Controller
         return Professor::with('user.professor','diary')->get();
         
     }
+    public function show($id)
+    {
+        return Professor::with(['user','diary.students'])->find($id);
+    }
     public function store(Request $request)
     {
     //    $fetchedProfessorObject = $request->only('url');
