@@ -19,6 +19,15 @@ class DiaryController extends Controller
     {
         return Diary::with(['professor.user','students','comments.user'])->find($id);
     }
+
+    public function store(Request $request)
+    {
+        $diary = new Diary();
+        $diary->title = $request->input('title');
+        $diary->professor_id = $request->input('professor_id');
+        $diary->save();
+        return $diary;
+    }
     
     public function commentStore(Request $request, $id)
     {
@@ -50,7 +59,7 @@ class DiaryController extends Controller
         $imagesArray = [];
 
         foreach ($request->url as $imageLink) {
-            array_push($imagesArray, new Image(['url' => "$imageLink"]));
+            array_push($imagesArray, new Image(['url' => "$imageLink"],['student_id' => "$student.id"]));
         }
 
         $student->studentHasManyImages()->saveMany($imagesArray);
