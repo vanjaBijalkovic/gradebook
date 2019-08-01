@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Professor;
+use App\Student;
 
 class Image extends Model
 {	
@@ -14,5 +15,9 @@ class Image extends Model
     public function imageBelongsToProfessor()
     {
     	return $this->belongsTo(Professor::class);
-    } 
+    }
+    public function imageBelongsToStudent()
+    {
+    	return $this->belongsTo(Student::class);
+    }  
 }

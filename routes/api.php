@@ -21,6 +21,8 @@ Route::middleware('api')->resource('diaries', 'DiaryController');
 
 Route::middleware('api')->post('/diaries/{id}/comments', 'DiaryController@commentStore');
 
+Route::middleware('api')->post('/diaries/{id}/students', 'DiaryController@studentStore');
+
 Route::middleware('api')->resource('professors','ProfessorController');
 
 Route::middleware('api')->resource('comments','CommentController');
