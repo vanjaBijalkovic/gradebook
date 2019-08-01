@@ -14,12 +14,12 @@ class CreateImagesTable extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
             $table->string('url');
-            $table->unsignedBiginteger('professor_id')->default('0');
+            $table->unsignedBiginteger('professor_id')->nullable();
             $table->foreign('professor_id')
                 ->references('id')
                 ->on('professors')
                 ->onDelete('cascade');
-            $table->unsignedBiginteger('student_id')->default('0');
+            $table->unsignedBiginteger('student_id')->nullable();
             $table->foreign('student_id')
                 ->references('id')
                 ->on('students')

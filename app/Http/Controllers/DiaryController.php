@@ -59,7 +59,7 @@ class DiaryController extends Controller
         $imagesArray = [];
 
         foreach ($request->url as $imageLink) {
-            array_push($imagesArray, new Image(['url' => "$imageLink"],['student_id' => "$student.id"]));
+            array_push($imagesArray, new Image(['url' => $imageLink],['student_id' => $student->id]));
         }
 
         $student->studentHasManyImages()->saveMany($imagesArray);
