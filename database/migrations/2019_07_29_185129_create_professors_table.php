@@ -20,7 +20,7 @@ class CreateProfessorsTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-            $table->string('url');
+            $table->string('url')->nullable();
             $table->timestamps();
         });
     }
