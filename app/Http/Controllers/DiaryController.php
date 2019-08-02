@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Diary;
 use App\Comment;
 use App\Student;
@@ -32,7 +33,7 @@ class DiaryController extends Controller
     {
         $comment = new Comment();
         $comment->text = $request->input('text');
-        $comment->user_id = $request->input('user_id');
+        $comment->user_id = Auth::user()->id;;
         $comment->diary_id = $id;
         $comment->save();
         return $comment;

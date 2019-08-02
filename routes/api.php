@@ -17,17 +17,17 @@ Route::post('/login','Auth\LoginController@authenticate');
 
 Route::post('/register', 'Auth\RegisterController@register');
 
-Route::middleware('api')->resource('diaries', 'DiaryController');
+Route::middleware('jwt')->resource('diaries', 'DiaryController');
 
-Route::middleware('api')->post('/diaries/{id}/comments', 'DiaryController@commentStore');
+Route::middleware('jwt')->post('/diaries/{id}/comments', 'DiaryController@commentStore');
 
-Route::middleware('api')->post('/diaries/{id}/students', 'DiaryController@studentStore');
+Route::middleware('jwt')->post('/diaries/{id}/students', 'DiaryController@studentStore');
 
-Route::middleware('api')->resource('professors','ProfessorController');
+Route::middleware('jwt')->resource('professors','ProfessorController');
 
-Route::middleware('api')->resource('comments','CommentController');
+Route::middleware('jwt')->resource('comments','CommentController');
 
-Route::middleware('api')->get('/users/{id}', 'UserController@show');
+Route::middleware('jwt')->get('/users/{id}', 'UserController@show');
 
 
 
