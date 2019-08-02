@@ -62,7 +62,8 @@ class RegisterController extends Controller
             'lastName' => $request->input('lastName'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
-            'email_verified_at' => now()
+            'email_verified_at' => now(),
+            'termsAndConditions' => $request->input('termsAndConditions')
         ]);
     }
 }

@@ -49,7 +49,7 @@ class DiaryController extends Controller
        $comment->delete();
     }
     public function studentStore(Request $request, $id)
-    {
+    {   
         $student = new Student();
         $student->firstName = $request->input('firstName');
         $student->lastName = $request->input('lastName');
@@ -65,6 +65,16 @@ class DiaryController extends Controller
         $student->studentHasManyImages()->saveMany($imagesArray);
 
         return response()->json(['success'=> true, 'message'=> 'Gallery Saved!!']);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $diary = Diary::find($id);
+        $diary->title = $request->input('title');
+        $diary->professor_id = $request->input('professor_id');
+              
+        $diary->save();
+        return $diary;
     }
 
 }

@@ -27,5 +27,7 @@ Route::middleware('api')->resource('professors','ProfessorController');
 
 Route::middleware('api')->resource('comments','CommentController');
 
+Route::middleware('api')->get('/users/{id}', 'UserController@show');
+
 
 

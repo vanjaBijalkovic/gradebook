@@ -20,7 +20,7 @@ class ProfessorController extends Controller
         return Professor::with(['user','diary.students','professorHasManyImages'])->find($id);
     }
     public function store(Request $request)
-    {
+    {   
         $user = new User();
         $user->firstName = $request->input('firstName');
         $user->lastName = $request->input('lastName');
