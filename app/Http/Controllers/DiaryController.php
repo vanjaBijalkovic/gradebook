@@ -12,12 +12,11 @@ class DiaryController extends Controller
 {
     public function index(Request $request)
     {
-        return Diary::with(['professor.user','students'])->get();
-        
+        return Diary::with(['professor.user', 'students'])->get();
     }
     public function show($id)
     {
-        return Diary::with(['professor.user','students','comments.user'])->find($id);
+        return Diary::with(['professor.user', 'students', 'comments.user'])->find($id);
     }
 
     public function store(Request $request)
@@ -28,7 +27,7 @@ class DiaryController extends Controller
         $diary->save();
         return $diary;
     }
-    
+
     public function commentStore(Request $request, $id)
     {
         $comment = new Comment();
@@ -42,29 +41,29 @@ class DiaryController extends Controller
     {
         $comment = Comment::find($id);
 
-       if(!isset($comment)) {
+        if (!isset($comment)) {
             abort(404, "Comment not found");
         }
 
-       $comment->delete();
+        $comment->delete();
     }
     public function studentStore(Request $request, $id)
-    {   
+    {
         $student = new Student();
         $student->firstName = $request->input('firstName');
         $student->lastName = $request->input('lastName');
         $student->diary_id = $id;
-        
+
         $student->save();
         $imagesArray = [];
 
         foreach ($request->url as $imageLink) {
-            array_push($imagesArray, new Image(['url' => $imageLink],['student_id' => $student->id]));
+            array_push($imagesArray, new Image(['url' => $imageLink], ['student_id' => $student->id]));
         }
 
         $student->studentHasManyImages()->saveMany($imagesArray);
 
-        return response()->json(['success'=> true, 'message'=> 'Gallery Saved!!']);
+        return response()->json(['success' => true, 'message' => 'Gallery Saved!!']);
     }
 
     public function update(Request $request, $id)
@@ -72,9 +71,14 @@ class DiaryController extends Controller
         $diary = Diary::find($id);
         $diary->title = $request->input('title');
         $diary->professor_id = $request->input('professor_id');
-              
+
         $diary->save();
         return $diary;
     }
-
+    public function destroy($id)
+    {
+        $diary = Diary::find($id);
+        $diary->delete();
+        return $diary;
+    }
 }

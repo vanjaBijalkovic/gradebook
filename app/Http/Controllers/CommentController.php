@@ -11,10 +11,10 @@ class CommentController extends Controller
     {
         $comment = Comment::find($id);
 
-       if(!isset($comment)) {
+        if (!isset($comment)) {
             abort(404, "Comment not found");
         }
 
-       $comment->delete();
+        $comment->delete();
     }
 }
