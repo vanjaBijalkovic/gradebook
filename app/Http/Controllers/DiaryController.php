@@ -94,7 +94,7 @@ class DiaryController extends Controller
     public function search(Request $request)
     {
         $searchTerm = '%' . $request->input('search_term') . '%';
-        $result = Diary::where('title', 'like', $searchTerm)->paginate(10);
+        $result = Diary::where('title', 'like', $searchTerm)->with('professor')->paginate(10);
 
         return $result;
     }
