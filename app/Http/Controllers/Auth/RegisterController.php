@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use App\Professor;
 class RegisterController extends Controller
 {
     /*
@@ -56,8 +57,7 @@ class RegisterController extends Controller
      * @return \App\User
      */
     public function register(Request $request) {
-            
-        return User::create([
+        $user = User::create([
             'firstName' => $request->input('firstName'),
             'lastName' => $request->input('lastName'),
             'email' => $request->input('email'),
@@ -65,5 +65,13 @@ class RegisterController extends Controller
             'email_verified_at' => now(),
             'termsAndConditions' => $request->input('termsAndConditions')
         ]);
+
+        $professor = new Professor();
+        $professor->user_id = $user->id;
+        $professor->save();
+
+        \Log::info($professor);
+            
+        return User::with('professor')->find($user->id);
     }
 }

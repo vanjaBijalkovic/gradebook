@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateProfessor;
 use App\Professor;
 use App\Diary;
 use App\Image;
 use App\User;
 
 class ProfessorController extends Controller
-{
+{   
     public function index(Request $request)
     {
         return Professor::with('user.professor', 'diary', 'professorHasManyImages')->get();
@@ -18,7 +19,7 @@ class ProfessorController extends Controller
     {
         return Professor::with(['user', 'diary.students', 'professorHasManyImages'])->find($id);
     }
-    public function store(Request $request)
+    public function store(CreateProfessor $request)
     {
         $user = new User();
         $user->firstName = $request->input('firstName');

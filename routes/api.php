@@ -29,5 +29,7 @@ Route::middleware('jwt')->resource('comments','CommentController');
 
 Route::middleware('jwt')->get('/users/{id}', 'UserController@show');
 
+Route::get('/diaries/my-diary/{id}', 'DiaryController@myDiary');
+
 
 

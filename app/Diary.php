@@ -12,6 +12,12 @@ class Diary extends Model
 	
         'title','professor_id',
     ];
+
+    const STORE_RULES = [
+        'title' => 'required|min:2',
+        'professor_id' => 'required'
+    ];
+
     public function professor()
     {
     	return $this->belongsTo(Professor::class);

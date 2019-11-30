@@ -13,15 +13,23 @@ class DiaryController extends Controller
 {
     public function index(Request $request)
     {
-        return Diary::with(['professor.user', 'students'])->get();
+        return Diary::with(['professor.user', 'students'])->paginate(10);
     }
     public function show($id)
     {
         return Diary::with(['professor.user', 'students', 'comments.user'])->find($id);
     }
 
+    public function myDiary($id)
+    {
+        \Log::info('tesafdsafdsa fdsafdsa');
+        return Diary::with(['professor.user', 'students', 'comments.user'])->where('professor_id', $id)->first();
+    }
+
+
     public function store(Request $request)
     {
+        $this->validate($request, Diary::STORE_RULES);
         $diary = new Diary();
         $diary->title = $request->input('title');
         $diary->professor_id = $request->input('professor_id');

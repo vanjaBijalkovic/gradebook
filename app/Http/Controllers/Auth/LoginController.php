@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\User;
 use Tymon\JWTAuth\Exceptions\JWTException;
 class LoginController extends Controller
 {
@@ -34,6 +35,7 @@ class LoginController extends Controller
     }
     public function authenticate(Request $request)
     {
+        \Log::info($request);
         $credentials = $request->only(['email', 'password']);
         try {
             if (!$token = \JWTAuth::attempt($credentials)) {
@@ -42,10 +44,14 @@ class LoginController extends Controller
         } catch (JWTException $e) {
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
+        $user = auth()->user();
+
+
         return response()->json(
             [
                 'token' => $token,
-                'user' => auth()->user()
+                'user' => User::with('professor')->find($user->id)
+                
             ]
         );
     }
