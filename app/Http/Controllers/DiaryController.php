@@ -90,4 +90,12 @@ class DiaryController extends Controller
         $diary->delete();
         return $diary;
     }
+
+    public function search(Request $request)
+    {
+        $searchTerm = '%' . $request->input('search_term') . '%';
+        $result = Diary::where('title', 'like', $searchTerm)->paginate(10);
+
+        return $result;
+    }
 }

@@ -31,5 +31,7 @@ Route::middleware('jwt')->get('/users/{id}', 'UserController@show');
 
 Route::get('/diaries/my-diary/{id}', 'DiaryController@myDiary');
 
+Route::get('/search', 'DiaryController@search');
+
 
 
